@@ -1,0 +1,17 @@
+dvc[gdrive,s3]   # DVC + Google Drive support + s3 (aws support)
+
+# external requirements
+click
+Sphinx
+coverage
+#awscli>=1.29.0
+flake8
+pandas
+#logging
+numpy 
+pathlib 
+scikit-learn
+imbalanced-learn
+joblib
+
+
