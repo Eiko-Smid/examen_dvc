@@ -97,3 +97,5 @@ target/
 
 # Ignore cloud folder
 /clean_data.csv
+
+exam.md
