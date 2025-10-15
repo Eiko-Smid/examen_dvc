@@ -1,0 +1,30 @@
+schema: '2.0'
+stages:
+  spit_data:
+    cmd: python src/data/split_data.py
+    deps:
+    - path: data/raw_data/raw.csv
+      hash: md5
+      md5: 617b56af2992376d5c3e91ad80823898
+      size: 333757
+    - path: src/data/split_data.py
+      hash: md5
+      md5: c4eaeaa182244b42ec4723c2c046f861
+      size: 1763
+    outs:
+    - path: data/processed_data/X_test.csv
+      hash: md5
+      md5: 3650992347abd32b2cd42bde8906b31f
+      size: 52989
+    - path: data/processed_data/X_train.csv
+      hash: md5
+      md5: 10b9624259cdef969e3830e4f6c0c4c3
+      size: 210922
+    - path: data/processed_data/y_test.csv
+      hash: md5
+      md5: 3738f93f228b4914c0c48ba6a9c35298
+      size: 6821
+    - path: data/processed_data/y_train.csv
+      hash: md5
+      md5: a9f6c4c8eba38f4177a8cfac86d19e97
+      size: 27405
