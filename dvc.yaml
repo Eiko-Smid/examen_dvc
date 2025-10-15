@@ -9,3 +9,42 @@ stages:
     - data/processed_data/X_train.csv
     - data/processed_data/y_test.csv
     - data/processed_data/y_train.csv
+  norm_data:
+    cmd: python src/data/norm_data.py
+    deps:
+    - data/processed_data/X_test.csv
+    - data/processed_data/X_train.csv
+    - src/data/norm_data.py
+    outs:
+    - data/processed_data/X_test_scaled.csv
+    - data/processed_data/X_train_scaled.csv
+  grid_search:
+    cmd: python src/models/grid_search.py
+    deps:
+    - data/processed_data/X_test_scaled.csv
+    - data/processed_data/X_train_scaled.csv
+    - data/processed_data/y_test.csv
+    - data/processed_data/y_train.csv
+    - src/models/grid_search.py
+    outs:
+    - models/best_params.pkl
+  model_training:
+    cmd: python src/models/train_model.py
+    deps:
+    - data/processed_data/X_train_scaled.csv
+    - data/processed_data/y_train.csv
+    - models/best_params.pkl
+    - src/models/train_model.py
+    outs:
+    - models/best_model.pkl
+  evaluate_model:
+    cmd: python src/models/model_evaluation.py
+    deps:
+    - data/processed_data/X_test_scaled.csv
+    - data/processed_data/y_test.csv
+    - models/best_model.pkl
+    - src/models/model_evaluation.py
+    outs:
+    - data/predictions.csv
+    metrics:
+    - metrics/scores.json
